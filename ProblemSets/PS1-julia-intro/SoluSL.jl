@@ -49,12 +49,16 @@ G = kron(B,C)
 # Julia rise dimensions issues
 ######## h
 @save "C:/Users/WorkingDirectory/matrixpractice.jld" A B C D E F G
+    
 ######## i
 @save "C:/Users/WorkingDirectory/firstmatrix.jld" A B C D
+    
 ######## j
 CSV.write("C:/Users/WorkingDirectory/Cmatrix.csv",DataFrame(C))
+    
 ######## k
 CSV.write("C:/Users/WorkingDirectory/Dmatrix.dat",DataFrame(D), delim="\t")
+    
 ######## l
     
 return(A,B,C,D)
