@@ -1,4 +1,4 @@
-# include("C:/Users/safou/R projects/00-JuliaTips/SoluSL.jl")
+# include("C:/Users/WorkingDirectory/00-JuliaTips/SoluSL.jl")
 
 
 using JLD2
@@ -30,27 +30,33 @@ D = reshape(latD,10,7)
 
 ######## b
 length(A)
+    
 ######## c
 length(unique(D))
+    
 ######## d
 E = reshape(B,length(B),1)
 Ev = vec(B)
+    
 ######## e
 F = cat(A,B,dims=3)
+    
 ######## f
 F = permutedims(F, [3,1,2])
 ######## g
+    
 G = kron(B,C)
 # Julia rise dimensions issues
 ######## h
-@save "C:/Users/safou/R projects/00-JuliaTips/matrixpractice.jld" A B C D E F G
+@save "C:/Users/WorkingDirectory/00-JuliaTips/matrixpractice.jld" A B C D E F G
 ######## i
-@save "C:/Users/safou/R projects/00-JuliaTips/firstmatrix.jld" A B C D
+@save "C:/Users/WorkingDirectory/00-JuliaTips/firstmatrix.jld" A B C D
 ######## j
-CSV.write("C:/Users/safou/R projects/00-JuliaTips/Cmatrix.csv",DataFrame(C))
+CSV.write("C:/Users/WorkingDirectory/00-JuliaTips/Cmatrix.csv",DataFrame(C))
 ######## k
-CSV.write("C:/Users/safou/R projects/00-JuliaTips/Dmatrix.dat",DataFrame(D), delim="\t")
+CSV.write("C:/Users/WorkingDirectory/00-JuliaTips/Dmatrix.dat",DataFrame(D), delim="\t")
 ######## l
+    
 return(A,B,C,D)
 end
 
@@ -114,10 +120,10 @@ q2(A,B,C)
 function q3()
 #################### Q3 ###################
 ######## a
-dff = CSV.read("C:/Users/safou/R projects/00-JuliaTips/nlsw88.csv"; delim = ',') # in this data missing values are not ignored
+dff = CSV.read("C:/Users/WorkingDirectory/00-JuliaTips/nlsw88.csv"; delim = ',') # in this data missing values are not ignored
 
-df = CSV.read("C:/Users/safou/R projects/00-JuliaTips/nlsw88.csv"; delim = ',', missingstring = "NA")
-@save "C:/Users/safou/R projects/00-JuliaTips/nlsw88.jld" df
+df = CSV.read("C:/Users/WorkingDirectory/00-JuliaTips/nlsw88.csv"; delim = ',', missingstring = "NA")
+@save "C:/Users/WorkingDirectory/00-JuliaTips/nlsw88.jld" df
 
 ######## b
 per_nm = mean(df.never_married)*100
@@ -133,7 +139,7 @@ size(sumstdf)
 m = size(sumstdf)[2]-2 # last col for interquartile computing
 summarystats = Array{Any}(undef,size(sumstdf)[1],m)
 
-#initiating matrix with the discribe df value and replacing nothing values by missing which allows computing
+#initiating matrix with the describe df values and replacing nothing values by missing which will allows computing
 
 for i in 2:m
     summarystats[:,i-1] = replace(sumstdf[:,i], nothing => missing)
@@ -142,7 +148,7 @@ end
 #computing interquartile
 summarystats[:,m] = replace(sumstdf[:, m + 1], nothing => missing) - replace(sumstdf[:, m + 2], nothing => missing)
 
-#for the describe(dff) command the there is 2 missing values
+#from the describe(dff) command, there is 2 missing values
 describe(dff)
 
 ######## e
@@ -160,7 +166,7 @@ end
 function q4()
 #################### Q4 ###################
 ######## a
-@load "C:/Users/safou/R projects/00-JuliaTips/firstmatrix.jld"
+@load "C:/Users/WorkingDirectory/00-JuliaTips/firstmatrix.jld"
 ######## b
 function matrixops(A,B)
     #compute and return a tulpe element-by-element product, matrix product and sum of elements of two matrix
@@ -173,6 +179,7 @@ function matrixops(A,B)
     i = A .*B
     ii = A'B
     iii = sum(A + B)
+        
     return(i,ii,iii)
 end
 
